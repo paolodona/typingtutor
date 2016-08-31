@@ -1,20 +1,20 @@
-# Keymaster
+# Typing Tutor
 Minimalist command line typing tutor written in ruby
 
 Installation:
 
 ```
-$ gem install keymaster
+$ gem install typingtutor
 ```
 
 Show exercises available:
 
 ```
-$ keymaster 
+$ typingtutor 
 ```
 
 Play a specific exercise, eg:
 
 ```
-$ keymaster lorem
+$ typingtutor lorem
 ```

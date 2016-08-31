@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'typingtutor'
+Typingtutor::Runner.new.run(ARGV[0])

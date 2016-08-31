@@ -1,4 +1,4 @@
-module Keymaster
+module Typingtutor
   class Line
     def initialize(string)
       @original = string
@@ -54,4 +54,4 @@ module Keymaster
     end
 
   end # Line
-end # Keymaster
+end # Typingtutor

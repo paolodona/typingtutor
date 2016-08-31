@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require 'keymaster'
-Keymaster::Runner.new.run(ARGV[0])

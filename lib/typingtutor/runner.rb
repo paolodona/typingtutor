@@ -1,4 +1,4 @@
-module Keymaster
+module Typingtutor
   class Runner
     include HighLine::SystemExtensions
 
@@ -11,7 +11,7 @@ module Keymaster
         stats = exercise.map { |line| Line.new(line).play }
         print_stats(stats)
       else
-        puts "usage: keymaster <exercise>"
+        puts "usage: typingtutor <exercise>"
         puts "available:"
         exercises.keys.each {|e| puts "- #{e}"}
       end
@@ -20,7 +20,7 @@ module Keymaster
     protected
 
     def play_intro
-      puts "Keymaster: Touch Typing Training"; sleep 0.5;
+      puts "Typingtutor: Touch Typing Training"; sleep 0.5;
       3.downto(1) {|n| print "#{n}"; sleep 0.5; print '.'; sleep 0.5}
       print "GO!\n"
     end
@@ -73,4 +73,4 @@ module Keymaster
       puts "Typing accuracy: #{typing_accuracy}%"
     end
   end # Runner
-end # Keymaster
+end # Typingtutor
