@@ -1,12 +1,17 @@
-Gem::Specification.new do |s|
-  s.name        = 'keymaster'
-  s.version     = '1.0.0'
-  s.date        = '2016-08-31'
-  s.summary     = "Command line typing tutor"
-  s.authors     = ["Paolo Dona"]
-  s.email       = 'paolo.dona@gmail.com'
-  s.files       = ["lib/keymaster.rb"]
-  s.homepage    = 'https://github.com/paolodona/keymaster'
-  s.license     = 'MIT'
-  s.executables << 'keymaster'
+Gem::Specification.new do |gem|
+  gem.name        = 'keymaster'
+  gem.version     = '1.0.0'
+  gem.date        = '2016-08-31'
+  gem.summary     = "Command line typing tutor"
+  gem.authors     = ["Paolo Dona"]
+  gem.email       = 'paolo.dona@gmail.com'
+  gem.files       = %w{lib/keymaster.rb
+                       lib/keymaster/line.rb
+                       lib/keymaster/runner.rb}
+  gem.homepage    = 'https://github.com/paolodona/keymaster'
+  gem.license     = 'MIT'
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.require_paths = ["lib"]
+  gem.add_runtime_dependency "highline", ['1.7.8']
 end
