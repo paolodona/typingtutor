@@ -16,5 +16,7 @@ $ typingtutor
 Play a specific exercise, eg:
 
 ```
-$ typingtutor lorem
+$ typingtutor biglebowski
 ```
+
+![screenshot](https://dl.dropboxusercontent.com/u/28778231/typingtutor/demo.gif)
