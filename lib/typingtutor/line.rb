@@ -13,7 +13,9 @@ module Typingtutor
       while(true) do
         char = STDIN.getch
         case char.ord
-        when 3 then exit(1) # CTRL-C
+        when 3 # CTRL-C
+          puts
+          exit(1)
         when 13 then break # enter
         when 127 # backspace
           @actual.chop!
