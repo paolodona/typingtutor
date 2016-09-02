@@ -3,7 +3,7 @@ module Typingtutor
     include HighLine::SystemExtensions
 
     def run(exercise_name)
-      exercise = exercises[exercise_name]
+      exercise = load_exercise(exercise_name)
       if exercise
         setup_color_scheme
         play_intro
@@ -11,6 +11,7 @@ module Typingtutor
         stats = exercise.map { |line| Line.new(line).play }
         print_stats(stats)
       else
+        puts "Typingtutor v#{Typingtutor::VERSION}"
         puts "usage: typingtutor <exercise>"
         puts "available:"
         exercises.keys.each {|e| puts "- #{e}"}
@@ -34,23 +35,20 @@ module Typingtutor
       HighLine.color_scheme = cs
     end
 
+    def load_exercise(name)
+      file_name = File.join(File.dirname(__FILE__), '..', '..', "exercises", "#{name}.txt")
+
+      # load from exercise folder in the gem
+      lines = IO.read(file_name).lines if File.exists?(file_name)
+      return if lines.nil?
+
+      lines.each {|line| line.strip!}    # remove extra spaces
+      lines.reject! {|line| line.blank?} # remove empty lines
+      return lines
+    end
+
     def exercises
-      {
-        "lorem" => [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Nam nulla lacus, pharetra nec sollicitudin nec, faucibus non est. Nunc a erat in ante aliquet dapibus.',
-          'Quisque congue libero vel mattis sodales.', 'Sed pellentesque, nunc nec gravida molestie, tellus mauris semper tellus, ac suscipit nisl est sit amet augue.',
-          'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', 'Sed vehicula risus risus, a lobortis velit ultricies ut. Nullam porttitor leo eu leo congue, id porta elit vestibulum.',
-          'Suspendisse facilisis ut diam nec molestie. Donec consequat elementum volutpat.' ],
-        "test" => [
-          'paolo is a nice guy', 'but he cannot type fast', 'that is a shame.'
-        ],
-        "fox" => ["The quick brown fox jumps over the lazy dog"],
-        "haikurb" => [
-          '"eyes".scan /the_darkness/',
-          'catch( :in_the_wind ) { ?a.round; "breath"',
-          'or "a".slice /of_moon/ }'
-        ]
-      }
+      Dir[File.join(File.dirname(__FILE__), '..', '..', "exercises", "*.txt")]
     end
 
     def print_stats(stats)

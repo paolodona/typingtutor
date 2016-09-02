@@ -1,0 +1,3 @@
+"eyes".scan /the_darkness/
+catch( :in_the_wind ) { ?a.round; "breath"
+or "a".slice /of_moon/ }
