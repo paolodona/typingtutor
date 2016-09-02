@@ -12,9 +12,14 @@ module Typingtutor
         print_stats(stats)
       else
         puts "Typingtutor v#{Typingtutor::VERSION}"
-        puts "usage: typingtutor <exercise>"
-        puts "available:"
+        puts
+        puts "$ typingtutor <exercise>"
+        puts "$ typingtutor path/to/localfile.txt"
+        puts
+        puts "built in exercises:"
         exercises.each {|e| puts "- #{e}"}
+        puts
+        puts "eg: typingtutor biglebowski"
       end
     end
 
