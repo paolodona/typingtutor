@@ -3,7 +3,7 @@ module Typingtutor
     include HighLine::SystemExtensions
 
     def run(exercise_name)
-      exercise = load_exercise(exercise_name)
+      exercise = load_exercise(exercise_name) unless exercise_name.nil?
       if exercise
         setup_color_scheme
         play_intro
@@ -36,7 +36,6 @@ module Typingtutor
     end
 
     def load_exercise(name)
-      file_name = File.join(File.dirname(__FILE__), '..', '..', "exercises", "#{name}.txt")
       gem_file_name = File.join(File.dirname(__FILE__), '..', '..', "exercises", "#{name}.txt")
 
       # load from exercise folder in the gem
