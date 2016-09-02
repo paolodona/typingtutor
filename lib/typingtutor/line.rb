@@ -38,7 +38,7 @@ module Typingtutor
     end
 
     def print_backspace
-      print "\b#{HighLine.color(expected_char, :plain)}\b"
+      print "\b#{HighLine.color(expected_char || " ", :plain)}\b"
     end
 
     def expected_char; @original[@position]; end

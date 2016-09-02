@@ -14,7 +14,7 @@ module Typingtutor
         puts "Typingtutor v#{Typingtutor::VERSION}"
         puts "usage: typingtutor <exercise>"
         puts "available:"
-        exercises.keys.each {|e| puts "- #{e}"}
+        exercises.each {|e| puts "- #{e}"}
       end
     end
 
@@ -43,12 +43,18 @@ module Typingtutor
       return if lines.nil?
 
       lines.each {|line| line.strip!}    # remove extra spaces
-      lines.reject! {|line| line.blank?} # remove empty lines
+      lines.reject! {|line| line.strip.to_s == ""} # remove empty lines
       return lines
     end
 
     def exercises
-      Dir[File.join(File.dirname(__FILE__), '..', '..', "exercises", "*.txt")]
+      files = Dir[File.join(File.dirname(__FILE__), '..', '..', "exercises", "*.txt")]
+      files.map! do |name|
+        name = name.split(File::SEPARATOR).last
+        name = name.gsub /\.txt/, ''
+        name
+      end
+      files
     end
 
     def print_stats(stats)
