@@ -51,7 +51,7 @@ module Typingtutor
       { total_chars: @original.length,
         correct_chars: @original.length.times.select {|i| @original[i] == @actual[i] }.size,
         keystrokes: @keystrokes,
-        total_words: @original.split(' ').size
+        total_words: @actual.split(' ').size
       }
     end
 
