@@ -50,12 +50,6 @@ module Typingtutor
       return lines
     end
 
-    def load_exercise_from_web(url)
-      uri = URI.parse(url)
-      html = uri.open.read
-      Sanitize.document(html, elements:['html']).lines
-    end
-
     def exercises
       files = Dir[File.join(File.dirname(__FILE__), '..', '..', "exercises", "*.txt")]
       files.map! do |name|
