@@ -12,6 +12,7 @@ module Typingtutor
     end
 
     def add(word)
+      return if word =~ /'s/
       word = word.strip
       @words << word
       word.chars.uniq.each do |letter|
@@ -36,9 +37,9 @@ module Typingtutor
       lines = []
       line = ""
       500.times do
-        line << pick_word
+        line << (pick_word+" ")
         if line.size > 70
-          lines << line
+          lines << line.strip
           line = ""
         end
       end
