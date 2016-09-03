@@ -17,6 +17,7 @@ module Typingtutor
         puts "$ typingtutor path/to/localfile.txt"
         puts
         puts "built in exercises:"
+        puts "- training (dynamically generated)"
         exercises.each {|e| puts "- #{e}"}
         puts
         puts "eg: typingtutor biglebowski"
@@ -43,6 +44,7 @@ module Typingtutor
     def load_exercise(name)
       gem_file_name = File.join(File.dirname(__FILE__), '..', '..', "exercises", "#{name}.txt")
 
+      lines ||= dictionary.training_exercise if name == 'training'
       # load from exercise folder in the gem
       lines ||= IO.read(name).lines if File.exists?(name)
       lines ||= IO.read("#{name}.txt").lines if File.exists?("#{name}.txt")
@@ -63,6 +65,10 @@ module Typingtutor
         name
       end
       files
+    end
+
+    def dictionary
+      @dictionary ||= Dictionary.new
     end
 
     def print_stats(stats)
