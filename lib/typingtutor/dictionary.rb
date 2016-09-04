@@ -27,7 +27,6 @@ module Typingtutor
 
     def pick_word_with_letter(letter)
       return nil if @letters[letter].nil?
-      puts "picking words for letter '#{letter}' (#{@letters[letter]})"
       @letters[letter][rand(@letters[letter].size)]
     end
 

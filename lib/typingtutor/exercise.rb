@@ -96,7 +96,7 @@ module Typingtutor
     def print
       puts
       puts "------------------------"
-      puts "Time: #{time.round(1)}s (#{words} words)"
+      puts "Time: #{time.round.divmod(60).join('m ')}s (#{words} words)"
       puts "Speed: #{gross_wpm.round} wpm"
       # puts "Word accuracy: #{word_accuracy}%"
       puts "Typing accuracy: #{typing_accuracy}%"

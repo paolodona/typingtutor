@@ -24,7 +24,7 @@ module Typingtutor
         puts
         puts "built in exercises:"
         puts "- training (250 random english words)"
-        puts "- improve  (250 words dynamically generated)"
+        puts "- improve  (focus on letters you miss the most)"
         Exercise.available_exercises.each {|e| puts "- #{e}"}
         puts
         puts "eg: typingtutor biglebowski"
