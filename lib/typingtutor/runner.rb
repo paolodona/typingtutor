@@ -3,12 +3,18 @@ module Typingtutor
     include HighLine::SystemExtensions
 
     def run(exercise_name)
+      if exercise_name == 'stats'
+        stats.print_full
+        exit(0)
+      end
+
       exercise = Exercise.load(name:exercise_name, stats:stats)
       if exercise
         setup_color_scheme
         play_intro
         exercise.play
         exercise.print
+        stats.print
         stats.save
       else
         puts "Typingtutor v#{Typingtutor::VERSION}"
@@ -17,7 +23,8 @@ module Typingtutor
         puts "$ typingtutor path/to/localfile.txt"
         puts
         puts "built in exercises:"
-        puts "- training (dynamically generated)"
+        puts "- training (250 random english words)"
+        puts "- improve  (250 words dynamically generated)"
         Exercise.available_exercises.each {|e| puts "- #{e}"}
         puts
         puts "eg: typingtutor biglebowski"

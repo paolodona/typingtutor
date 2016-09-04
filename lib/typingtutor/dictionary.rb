@@ -26,6 +26,8 @@ module Typingtutor
     end
 
     def pick_word_with_letter(letter)
+      return nil if @letters[letter].nil?
+      puts "picking words for letter '#{letter}' (#{@letters[letter]})"
       @letters[letter][rand(@letters[letter].size)]
     end
 
@@ -36,7 +38,7 @@ module Typingtutor
     def training_exercise
       lines = []
       line = ""
-      500.times do
+      250.times do
         line << (pick_word+" ")
         if line.size > 70
           lines << line.strip

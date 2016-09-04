@@ -52,5 +52,37 @@ module Typingtutor
       @stats[:letters][letter][:total][:correct] += 1 if ok
       @stats[:letters][letter][:total][:accuracy] = (@stats[:letters][letter][:total][:correct].to_f / @stats[:letters][letter][:total][:count].to_f * 100).round
     end
+
+    def print
+      puts "------------------------"
+      puts "Your avg speed: #{@stats[:total][:avg_wpm].round} wpm"
+      puts "Your max speed: #{@stats[:total][:max_wpm].round} wpm"
+    end
+
+    def print_full
+      puts "Accuracy per letter:"
+      worst_letters.each {|letter, accuracy| puts "#{letter}: #{accuracy.round}%"}
+
+      if @stats[:exercises].size > 0
+        puts
+        puts "Exercises:"
+        @stats[:exercises].each do |name, data|
+          puts "- #{name}: #{data[:runs]} runs, #{data[:last_run_results][:gross_wpm].round} wpm"
+        end
+      end
+      puts
+      puts "Exercises played : #{@stats[:total][:runs]}"
+      puts "Time played: #{@stats[:total][:time].round.divmod(60).join('m ')}s"
+      puts "Avg speed: #{@stats[:total][:avg_wpm].round} wpm"
+      puts "Max speed: #{@stats[:total][:max_wpm].round} wpm"
+    end
+
+    def worst_letters
+      accuracy = @stats[:letters].map {|letter, data| [letter, data[:total][:accuracy]]}.to_h # { "a" => 100, "b" => 98 }
+      accuracy.reject! {|key, value| value == 100}
+      accuracy.reject! {|key, value| key !~ /\w/ }
+      accuracy = accuracy.sort_by {|key, value| value }.to_h
+      accuracy
+    end
   end
 end
