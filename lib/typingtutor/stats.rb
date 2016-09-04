@@ -71,10 +71,10 @@ module Typingtutor
         end
       end
       puts
-      puts "Exercises played : #{@stats[:total][:runs]}"
-      puts "Time played: #{@stats[:total][:time].round.divmod(60).join('m ')}s"
-      puts "Avg speed: #{@stats[:total][:avg_wpm].round} wpm"
-      puts "Max speed: #{@stats[:total][:max_wpm].round} wpm"
+      puts "Exercises played: #{@stats[:total][:runs] || 0}"
+      puts "Time played: #{(@stats[:total][:time] || 0).round.divmod(60).join('m ')}s"
+      puts "Avg speed: #{(@stats[:total][:avg_wpm] || 0).round} wpm"
+      puts "Max speed: #{(@stats[:total][:max_wpm] || 0).round} wpm"
     end
 
     def worst_letters

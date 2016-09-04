@@ -1,5 +1,6 @@
 # Changelog
 
+* 1.0.6: Added 'improve' exercise and overall stats
 * 1.0.5: Added 'training' exercise based on random dictionary words
 * 1.0.4: Added 'biglebowski' exercise
 * 1.0.3: First version with gem executable working properly
