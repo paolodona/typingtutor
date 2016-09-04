@@ -48,10 +48,10 @@ module Typingtutor
     def ok?; expected_char == actual_char; end
 
     def stats
-      { total_chars: @original.length,
+      { chars: @original.length,
         correct_chars: @original.length.times.select {|i| @original[i] == @actual[i] }.size,
         keystrokes: @keystrokes,
-        total_words: @actual.split(' ').size
+        words: @actual.split(' ').size
       }
     end
 

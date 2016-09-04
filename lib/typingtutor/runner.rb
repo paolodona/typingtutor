@@ -9,6 +9,7 @@ module Typingtutor
         play_intro
         exercise.play
         exercise.print
+        stats.save
       else
         puts "Typingtutor v#{Typingtutor::VERSION}"
         puts

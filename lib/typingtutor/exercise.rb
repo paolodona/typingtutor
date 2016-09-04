@@ -1,6 +1,7 @@
-module Typingtuor
+module Typingtutor
   class Exercise
     attr_accessor :name, :body, :stats, :start, :time
+    attr_accessor :chars, :correct_chars, :words, :keystrokes, :typing_accuracy, :word_accuracy, :gross_wpm
 
     # class methods
 
@@ -45,24 +46,26 @@ module Typingtuor
     end
 
     def play
+      @start = Time.now
       results = body.map { |line| Line.new(line).play }
-      self.time = Time.now - start
-      self.total_chars   = results.map {|s| s[:total_chars] }.inject(:+)
+      self.time = Time.now - @start
+      self.chars = results.map {|s| s[:chars] }.inject(:+)
       self.correct_chars = results.map {|s| s[:correct_chars] }.inject(:+)
-      self.total_words   = results.map {|s| s[:total_words] }.inject(:+)
+      self.words   = results.map {|s| s[:words] }.inject(:+)
       self.keystrokes    = results.map {|s| s[:keystrokes] }.inject(:+)
       self.typing_accuracy = (correct_chars.to_f / keystrokes.to_f * 100).to_i
-      self.word_accuracy   = (correct_chars.to_f / total_chars.to_f * 100).to_i # TODO
-      self.gross_wpm = total_words / (time / 60)
+      self.word_accuracy   = (correct_chars.to_f / chars.to_f * 100).to_i # TODO
+      self.gross_wpm = words / (time / 60)
+      stats.record_exercise(self)
       return results
     end
 
     def results
       {
         time: time,
-        total_chars: total_chars,
+        chars: chars,
         correct_chars: correct_chars,
-        total_words: total_words,
+        words: words,
         keystrokes: keystrokes,
         typing_accuracy: typing_accuracy,
         word_accuracy: word_accuracy,
@@ -73,7 +76,7 @@ module Typingtuor
     def print
       puts
       puts "------------------------"
-      puts "Time: #{time.round(1)}s (#{total_words} words)"
+      puts "Time: #{time.round(1)}s (#{words} words)"
       puts "Speed: #{gross_wpm.round} wpm"
       puts "Word accuracy: #{word_accuracy}%"
       puts "Typing accuracy: #{typing_accuracy}%"
