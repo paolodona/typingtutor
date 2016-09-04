@@ -1,10 +1,11 @@
 module Typingtutor
   class Line
-    def initialize(string)
-      @original = string
+    def initialize(line:, stats:)
+      @original = line
       @actual   = ""
       @position = 0
       @keystrokes = 0
+      @stats = stats
     end
 
     def play
@@ -28,7 +29,7 @@ module Typingtutor
           @keystrokes +=1
         end
       end
-      return stats
+      return results
     end
 
     def print_char
@@ -47,7 +48,7 @@ module Typingtutor
     def actual_char;   @actual[@position];   end
     def ok?; expected_char == actual_char; end
 
-    def stats
+    def results
       { chars: @original.length,
         correct_chars: @original.length.times.select {|i| @original[i] == @actual[i] }.size,
         keystrokes: @keystrokes,

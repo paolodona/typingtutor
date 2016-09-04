@@ -27,8 +27,13 @@ module Typingtutor
       # TODO
     end
 
-    def record_letters(letter)
-      # TODO
+    def record_letter(letter, ok)
+      @stats[:letters][letter] ||= {}
+      @stats[:letters][letter][:total] ||= {}
+      @stats[:letters][letter][:total][:count] ||= 0
+      @stats[:letters][letter][:total][:count] += 1
+      @stats[:letters][letter][:total][:correct] ||= 0
+      @stats[:letters][letter][:total][:correct] += 1 if ok
     end
   end
 end

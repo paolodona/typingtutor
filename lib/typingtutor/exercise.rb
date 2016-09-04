@@ -47,7 +47,7 @@ module Typingtutor
 
     def play
       @start = Time.now
-      results = body.map { |line| Line.new(line).play }
+      results = body.map { |line| Line.new(line:line, stats:stats).play }
       self.time = Time.now - @start
       self.chars = results.map {|s| s[:chars] }.inject(:+)
       self.correct_chars = results.map {|s| s[:correct_chars] }.inject(:+)
