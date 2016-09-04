@@ -38,6 +38,7 @@ module Typingtutor
       else
         print HighLine.color(expected_char, :plain)
       end
+      @stats.record_letter(expected_char, ok?)
     end
 
     def print_backspace
