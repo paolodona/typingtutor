@@ -1,0 +1,40 @@
+IO.puts "Hello"
+list = [1, 2, 3]
+a, b, c = list
+[a, _, ^c] = [1, 2, 3]
+list = [3, 2, 1]
+list2 = [4 | list]
+String.capitalize name
+Regex.run ~r{paolo}, string
+Regex.scan ~r{paolo}i, string
+Regex.replace ~r{a}i, string, "x"
+tuple = {:ok, content}
+{status, count, action} = {:ok, 42, "next"}
+{status, file} = File.open("mix.exs")
+{:ok, file} = File.open(path)
+concatenated = [1, 2] ++ [3, 4]
+difference = [1, 2, 3] -- [2, 3]
+true = 1 in [1, 2, 3]
+97 in 'paolo'
+keyword_list = [name: "Paolo", surname: "Dona"]
+[ {:name, "Paolo"}, {:surname, "Dona"} ]
+DB.save record, use_transaction: true, logging: "HIGH"
+map = %{"IT" => "Italy", "IE" => "Ireland"}
+map = %{name: 'Paolo', surname: 'Dona'}
+map["IT"]; map[:name]; map.name
+d = Date.new(2018,1,1)
+t = Time.new(12,34,30)
+with {:ok, file} = File.open(path),
+     content = IO.read(file, :all),
+     :ok     = File.close(file),
+     [_, uid, gid] = Regex.run( ~r{...}, content)
+do
+  "group #{gid}, user #{uid}"
+end
+with [a|_] <- [1,2,3], do:a #=> 1
+with [a|_] <- nil, do:a #=> nil
+Enum.count(values)
+Enum.sum(values)
+with count = Enum.count(values),
+     sum = Enum.sum(values)
+do: sum/count
